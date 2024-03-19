@@ -53,7 +53,6 @@ function getTime(date) {
 function getDayName(date) {
   return new Date(date).toLocaleDateString('en-US', { weekday: 'long' });
 }
-// throw new Error('Not implemented');
 
 /**
  * Returns the date of the next Friday from a given date.
@@ -66,8 +65,11 @@ function getDayName(date) {
  * Date('2024-02-13T00:00:00Z') => Date('2024-02-16T00:00:00Z')
  * Date('2024-02-16T00:00:00Z') => Date('2024-02-23T00:00:00Z')
  */
-function getNextFriday(/* date */) {
-  throw new Error('Not implemented');
+function getNextFriday(date) {
+  const nextFriday = new Date(date);
+  const difference = (5 + 7 - date.getDay()) % 7 || 7;
+  nextFriday.setDate(date.getDate() + difference);
+  return nextFriday;
 }
 
 /**
