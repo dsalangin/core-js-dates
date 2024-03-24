@@ -148,7 +148,6 @@ function formatDate(date) {
     timeZone: 'UTC',
   })}`;
 }
-// throw new Error('Not implemented');
 
 /**
  * Returns the total number of weekend days (Saturdays and Sundays) in a specified month and year.
@@ -162,8 +161,22 @@ function formatDate(date) {
  * 12, 2023 => 10
  * 1, 2024 => 8
  */
-function getCountWeekendsInMonth(/* month, year */) {
-  throw new Error('Not implemented');
+function getCountWeekendsInMonth(month, year) {
+  const firstDay = new Date(year, month - 1, 1).getDay();
+  const lastDay = new Date(year, month, 0);
+  const days = lastDay.getDate();
+  const weeks = Math.floor(days / 7);
+  const restDays = days % 7;
+
+  if (firstDay - 1 + restDays === 6 || firstDay === 0) {
+    return weeks * 2 + 1;
+  }
+
+  if (firstDay - 1 + restDays > 6) {
+    return weeks * 2 + 2;
+  }
+
+  return weeks * 2;
 }
 
 /**
