@@ -140,9 +140,15 @@ function isDateInPeriod(date, period) {
  * '1999-01-05T02:20:00.000Z' => '1/5/1999, 2:20:00 AM'
  * '2010-12-15T22:59:00.000Z' => '12/15/2010, 10:59:00 PM'
  */
-function formatDate(/* date */) {
-  throw new Error('Not implemented');
+function formatDate(date) {
+  const currentDate = new Date(date);
+  return `${currentDate.toLocaleDateString('en-US', {
+    timeZone: 'UTC',
+  })}, ${currentDate.toLocaleTimeString('en-US', {
+    timeZone: 'UTC',
+  })}`;
 }
+// throw new Error('Not implemented');
 
 /**
  * Returns the total number of weekend days (Saturdays and Sundays) in a specified month and year.
